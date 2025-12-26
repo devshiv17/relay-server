@@ -1,0 +1,20 @@
+[Unit]
+Description=Remotely Relay Server
+After=network.target
+
+[Service]
+Type=simple
+User=YOUR_USERNAME
+WorkingDirectory=/home/YOUR_USERNAME/relay-server
+ExecStart=/home/YOUR_USERNAME/relay-server/target/release/relay-server 8444
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

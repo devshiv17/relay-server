@@ -1,0 +1,21 @@
+[Unit]
+Description=Remotely Signal Server
+After=network.target
+
+[Service]
+Type=simple
+User=YOUR_USERNAME
+WorkingDirectory=/home/YOUR_USERNAME/signal_server
+ExecStart=/home/YOUR_USERNAME/signal_server/target/release/signal_server
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+Environment="RUST_LOG=info"
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
